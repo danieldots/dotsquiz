@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+    //뒤에 개행처리
+    function a() {
+        for (let i = 2; i < 10; i++) {
+            for (let j = 1; j < 10; j++) {
+                console.log(i+"*"+j+"="+ i*j);
+            } 
+            console.log('\n');
+        } 
+    }
+
+    //~~+단
+    function b() {
+        for (let i = 2; i < 10; i++) {
+            console.log(i+'단')
+            for (let j = 1; j < 10; j++) {
+                console.log(i+"*"+j+"="+ i*j);
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <h2> 
+        애디와 퀴즈풀이
+    </h2>
+    <h3> 
+        Quiz 1. 구구단 만들기
+    </h3>
+    <div>
+        1. 각 단 뒤에 개행 처리
+    </div>
+    <div>
+        개발자 도구를 열어 확인하세요
+    </div>
+    <button onclick="a()">click</button>
+    <br></br>
+
+    <div>
+        2. ~단 
+    </div>
+    <div>
+        개발자 도구를 열어 확인하세요
+    </div>
+    <button onclick="b()">click</button>
+    <br></br>
+    
+    <button onclick="location.href='AddieQuiz2.html'">다음 문제</button>
+</body>
+</html>
