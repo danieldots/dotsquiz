@@ -4,7 +4,57 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Addie's Quiz</title>
+    <style>
+        table{
+            border: 2px solid black;
+            border-collapse: collapse;
+            text-align: center;
+            padding: 5px;
+            margin-bottom: 15px;
+        }
+        th, td{
+            border: 1px solid black;
+            padding: 3px 8px;
+        }
+    </style> 
+    <script>
+        const students = [
+            { id: "1", score: "80" },
+            { id: "2", score: "65" },
+            { id: "3", score: "70" },
+            { id: "4", score: "62" },
+            { id: "5", score: "100" },
+            { id: "6", score: "92" },
+            { id: "7", score: "67" },
+            { id: "8", score: "78" },
+        ];
+        const award_except = students.filter(object => {
+            return Number(object.id) <= 6;
+        });
+        console.log(award_except)
+
+        const award_gold = award_except.filter(object => {
+            return Number(object.score) >= 90;
+        })
+        console.log(award_gold)
+
+        const award_silver = award_except.filter(object => {
+            return Number(object.score) >= 80 && Number(object.score) < 90;
+        })
+        console.log(award_silver)
+
+        const award_bronze = award_except.filter(object => {
+            return Number(object.score) >= 70 && Number(object.score) < 80;
+        })
+        console.log(award_bronze)
+
+        const award_effort = award_except.filter(object => {
+            return Number(object.score) < 70;
+        })
+        console.log(award_effort)
+
+    </script>
 </head>
 <body>
     <h2> 
@@ -15,6 +65,53 @@
         <p>70점 이상인 학생들은 ‘동메달' 그리고 나머지 학생들은 ‘성실상'을 주려고합니다. 이 행동을 award라는 함수를 사용해 구현해보세요!
         </p>
     </h3>
+    <table>
+        <th>ID</th>
+        <th>Score</th>
+        <th>Award</th>
+            <tr>
+                <td>1</td>
+                <td>80</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>65</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>70</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>62</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>100</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>92</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>67</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>78</td>
+                <td></td>
+            </tr>
+        </table>
+    <button onclick="award()">Award!</button>
+    <br></br>
     <button onclick="location.href='AddieQuiz1.html'">이전 문제</button>
     <button>다음 문제</button>
 </body>
