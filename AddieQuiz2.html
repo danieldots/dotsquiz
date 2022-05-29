@@ -5,19 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Addie's Quiz</title>
-    <style>
-        table{
-            border: 2px solid black;
-            border-collapse: collapse;
-            text-align: center;
-            padding: 5px;
-            margin-bottom: 15px;
-        }
-        th, td{
-            border: 1px solid black;
-            padding: 3px 8px;
-        }
-    </style> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         const students = [
             { id: "1", score: "80" },
@@ -29,32 +17,71 @@
             { id: "7", score: "67" },
             { id: "8", score: "78" },
         ];
-        const award_except = students.filter(object => {
+
+        let gold =0;
+        let silver= 0;
+        let bronze = 0;
+        let effort = 0;
+        let no_medal = 0;
+                
+        const award_include = students.filter(object => {
             return Number(object.id) <= 6;
         });
-        console.log(award_except)
+            for (let i = 0; i < students.length; i++) {
+                if (students[i].score >= 90){
+                    students[i].medal = "금메달"
+                    gold++;
+                } else if (students[i].score >= 80 && students[i].score < 90){
+                    students[i].medal = "은메달"
+                    silver++;
+                } else if (students[i].score >= 70 && students[i].score < 80){
+                    students[i].medal = "동메달"
+                    bronze++;
+                } else if (students[i].score < 70){
+                    students[i].medal = "성실상"
+                    effort++;
+                }
+            };
 
-        const award_gold = award_except.filter(object => {
-            return Number(object.score) >= 90;
-        })
-        console.log(award_gold)
+        const award_except = students.filter(object => {
+            return Number(object.id) > 6;
+        });
+            for (let i = 0; i < 2; i++) {
+                award_except[i].medal = "수상 제외"
+                no_medal++
+                };
 
-        const award_silver = award_except.filter(object => {
-            return Number(object.score) >= 80 && Number(object.score) < 90;
-        })
-        console.log(award_silver)
+        function award(){
+        $('#result').empty()
+        let result = ("금메달 수상 인원:"+gold+"명"+" / "+"은메달 수상 인원:"+silver+"명"+" / "+"동메달 수상 인원:"+bronze+"명"+" / "+"성실상 수상 인원:"+effort+"명"+" / "+"수상 제외 인원:"+no_medal+"명");
+        let temp_html =`<div>${result}</div>`
+        $('#result').append(temp_html)
+        }
 
-        const award_bronze = award_except.filter(object => {
-            return Number(object.score) >= 70 && Number(object.score) < 80;
-        })
-        console.log(award_bronze)
-
-        const award_effort = award_except.filter(object => {
-            return Number(object.score) < 70;
-        })
-        console.log(award_effort)
-
+       
+        
     </script>
+       <style>
+        table{
+            border: 3px solid black;
+            border-collapse: collapse;
+            text-align: center;
+            padding: 5px;
+            margin-bottom: 15px;
+        }
+
+        th{
+            border: 1px solid;
+            padding: 3px 8px;
+        }
+        tr{
+            border: 1x solid;
+        }
+        td{
+            border: 1px solid;
+        }
+
+    </style> 
 </head>
 <body>
     <h2> 
@@ -62,55 +89,38 @@
     </h2>
     <h3> 
         <p>Quiz 2. 여러개의 학생 정보중에, 90점 이상인 학생들은 ‘금메달', 80점 이상인 학생들은 ‘은메달', </p>
-        <p>70점 이상인 학생들은 ‘동메달' 그리고 나머지 학생들은 ‘성실상'을 주려고합니다. 이 행동을 award라는 함수를 사용해 구현해보세요!
-        </p>
+        <p>70점 이상인 학생들은 ‘동메달' 그리고 나머지 학생들은 ‘성실상'을 주려고합니다. 이 행동을 award라는 함수를 사용해 구현해보세요!</p>
+        <p>금메달, 은메달, 동메달을 각각 몇명정도가 수상했는지도 알고 싶습니다. 학생 아이디가 7이상인 학생들은 수상에서 제외합니다.</p>
     </h3>
     <table>
-        <th>ID</th>
-        <th>Score</th>
-        <th>Award</th>
-            <tr>
-                <td>1</td>
-                <td>80</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>65</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>70</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>62</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>100</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>92</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>67</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>78</td>
-                <td></td>
-            </tr>
+        <tr>
+            <th>ID</th>
+            <th>Score</th>
+            <th>Medal</th>
+        </tr>
+        <tbody id ="table1">
+        </tbody>
         </table>
-    <button onclick="award()">Award!</button>
+
+    <script>
+        buildTable(students)
+        function buildTable(data) {
+            var table = document.getElementById('table1')
+
+            for (var i=0; i < data.length; i++)
+            {
+                var row = `<tr>
+                            <td>${data[i].id}</td>
+                            <td>${data[i].score}</td>
+                            <td>${data[i].medal}</td>
+                        </tr>`
+                table.innerHTML += row
+            }
+        }
+    </script>
+
+    <div id="result"></div>
+    <button onclick="award()" onclick="medal()">Award!</button>
     <br></br>
     <button onclick="location.href='AddieQuiz1.html'">이전 문제</button>
     <button>다음 문제</button>
