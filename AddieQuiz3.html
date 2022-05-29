@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addie's Quiz</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        eachPrice = [];
+        eachMenu = [];
+
+        const menu = {
+            jjambbong: 4000,
+            jjajangmyeon: 5000,
+            tangsuyuk: 12000,
+        } 
+
+        const array = Object.values(menu)
+            for (let i = 0; i < array.length; i++){
+                this.eachPrice[i] = array[i];   
+            }
+
+
+        const order = function() {
+            $("#finalPrice").empty()
+            const a = Number(document.getElementById("jjambbong").value);
+            const b = Number(document.getElementById("jjajang").value);
+            const c = Number(document.getElementById("tangsuyuk").value);
+            if (a + b + c >= 10) {
+                alert('메뉴 10개 이상은 배달하기 너무 많다구');
+            } else if (a + b + c < 1) {
+                alert('아무것도 주문 안하게?')
+            } else if (Number.isInteger(a) == false || Number.isInteger(b) == false || Number.isInteger(c) == false) {
+                alert('정확한 개수로 주문해야지!')
+            } else if (a + b + c < 10){
+                this.eachMenu[0] = a;
+                this.eachMenu[1] = b;
+                this.eachMenu[2] = c;
+                let totalMenu = 0;
+                for (let i = 0; i <= 2; i++) {
+                    totalMenu += (eachPrice[i] * eachMenu[i]);
+                } 
+                
+                if (totalMenu < 5000) {
+                    alert('배달은 5000원부터 가능하다구')
+                } else if (totalMenu < 12000 && totalMenu >= 5000){
+                    deliverySum = totalMenu + 2500;
+                    temp_html = `<h2>${deliverySum}</h2>`
+                    $('#finalPrice').append(temp_html)
+                } else {
+                    temp_html = `<h2>${totalMenu}</h2>`
+                    $('#finalPrice').append(temp_html)
+                }
+            } 
+        }   
+        
+    </script>
+</head>
+<body>
+    <h2> 
+        애디와 퀴즈풀이
+    </h2>
+    <h4> 
+        <p>Quiz 3. 배달 앱에서 중국 음식을 시키려고합니다. 메뉴에서 음식을 골라 수량을 선택하고 </p>
+        <p>총 주문 가격을 알아낸다음 주문해야하는데, 이 행동을 order라는 함수를 사용해 구현해보세요! </p>
+    </h4>
+    <div>조건:배달 한번에 10개이상의 음식은 주문하지 못합니다. 배달 한번에 최소 주문 금액은 5000원입니다. 배달료는 5000원 이상일경우 2500원, 12000원 이상일 경우 무료입니다.</div>
+    <br></br>
+    <div>
+        짬뽕 몇개?
+    </div>
+    <div>
+        <input type="text" id="jjambbong">
+        <br></br> 
+    </div>
+    <div>
+    짜장 몇개?
+    </div>
+    <div>
+        <input type="text" id="jjajang">
+    <br></br>
+    <div>
+        탕슉 몇개?
+    </div>
+    <div>
+        <input type="text" id="tangsuyuk">
+        <br></br>
+    </div>  
+    <button onclick="order()">당장 시키자!</button>
+    <br></br>
+    <h2 id = "finalPrice" ></h2>
+</body>
