@@ -5,22 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Addie's Quiz</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-    //뒤에 개행처리
     function a() {
+        $("#gugudan").empty()
+        $("#i_dan").empty()
         var i = Number(document.getElementById('num').value);
             if (Number.isInteger(i) == false) {
                 alert("정수가 아닌 실수를 입력하였습니다. 2~9 사이의 정수를 입력하세요!!")
             } else if (i < 2 || i >9) {
                 alert("2~9 사이의 정수를 입력하세요!!")
             } else {
-                document.write("<h4>" + i + "단</h4>");
-                document.write("<br>");
+                let dan = `<div>${i+"단"}</div>`;
+                $('#i_dan').append(dan)
+
                 for (let j = 1; j < 10; j++) {
-                document.write(i+"*"+j+"="+ i*j);
-                document.write("<br>");
-                }
+                let gugu = i+"*"+j+"="+ i*j;
+                let temp_html = `<div>${gugu}</div>`;
+                $("#gugudan").append(temp_html)
             }
+        }
     }
     </script>
 </head>
@@ -33,6 +37,10 @@
     </h3>
     <div>
         2~9 사이의 정수를 입력해주세요.
+    </div>
+    <div id="i_dan">
+    </div>
+    <div id="gugudan">
     </div>
     <input type="text" id="num">
     <button onclick="a()">click</button>
