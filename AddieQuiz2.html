@@ -22,32 +22,33 @@
         let silver= 0;
         let bronze = 0;
         let effort = 0;
-        let no_medal = 0;
 
         //award 함수 선언!!
         const award = (students) => {
             const award_include = students.filter(object => {
                 return Number(object.id) <= 6;
-            });
+                    }
+                );
                 for (let i = 0; i < students.length; i++) {
                     if (students[i].score >= 90){
                         students[i].medal = "금메달"
-                        gold++;
+                        gold++
                     } else if (students[i].score >= 80 && students[i].score < 90){
                         students[i].medal = "은메달"
-                        silver++;
+                        silver++
                     } else if (students[i].score >= 70 && students[i].score < 80){
                         students[i].medal = "동메달"
-                        bronze++;
+                        bronze++
                     } else if (students[i].score < 70){
                         students[i].medal = "성실상"
-                        effort++;
+                        effort++
                     }
                 };
-            console.log(gold, silver, bronze, students)
-        }
+            return result = (gold, silver, bronze, students);
+        };
         //award 함수 선언!!
-        award(students)
+        award(students);
+        console.log(result)
         
         function result(){
         $('#result').empty()
