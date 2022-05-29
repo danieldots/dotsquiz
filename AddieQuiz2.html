@@ -23,43 +23,38 @@
         let bronze = 0;
         let effort = 0;
         let no_medal = 0;
-                
-        const award_include = students.filter(object => {
-            return Number(object.id) <= 6;
-        });
-            for (let i = 0; i < students.length; i++) {
-                if (students[i].score >= 90){
-                    students[i].medal = "금메달"
-                    gold++;
-                } else if (students[i].score >= 80 && students[i].score < 90){
-                    students[i].medal = "은메달"
-                    silver++;
-                } else if (students[i].score >= 70 && students[i].score < 80){
-                    students[i].medal = "동메달"
-                    bronze++;
-                } else if (students[i].score < 70){
-                    students[i].medal = "성실상"
-                    effort++;
-                }
-            };
 
-        const award_except = students.filter(object => {
-            return Number(object.id) > 6;
-        });
-            for (let i = 0; i < 2; i++) {
-                award_except[i].medal = "수상 제외"
-                no_medal++
+        //award 함수 선언!!
+        const award = (students) => {
+            const award_include = students.filter(object => {
+                return Number(object.id) <= 6;
+            });
+                for (let i = 0; i < students.length; i++) {
+                    if (students[i].score >= 90){
+                        students[i].medal = "금메달"
+                        gold++;
+                    } else if (students[i].score >= 80 && students[i].score < 90){
+                        students[i].medal = "은메달"
+                        silver++;
+                    } else if (students[i].score >= 70 && students[i].score < 80){
+                        students[i].medal = "동메달"
+                        bronze++;
+                    } else if (students[i].score < 70){
+                        students[i].medal = "성실상"
+                        effort++;
+                    }
                 };
-
-        function award(){
+            console.log(gold, silver, bronze, students)
+        }
+        //award 함수 선언!!
+        award(students)
+        
+        function result(){
         $('#result').empty()
-        let result = ("금메달 수상 인원:"+gold+"명"+" / "+"은메달 수상 인원:"+silver+"명"+" / "+"동메달 수상 인원:"+bronze+"명"+" / "+"성실상 수상 인원:"+effort+"명"+" / "+"수상 제외 인원:"+no_medal+"명");
+        let result = ("금메달 수상 인원:"+gold+"명"+" / "+"은메달 수상 인원:"+silver+"명"+" / "+"동메달 수상 인원:"+bronze+"명");
         let temp_html =`<div>${result}</div>`
         $('#result').append(temp_html)
-        }
-
-       
-        
+        }      
     </script>
        <style>
         table{
@@ -87,11 +82,12 @@
     <h2> 
         애디와 퀴즈풀이
     </h2>
-    <h3> 
+    <h4> 
         <p>Quiz 2. 여러개의 학생 정보중에, 90점 이상인 학생들은 ‘금메달', 80점 이상인 학생들은 ‘은메달', </p>
         <p>70점 이상인 학생들은 ‘동메달' 그리고 나머지 학생들은 ‘성실상'을 주려고합니다. 이 행동을 award라는 함수를 사용해 구현해보세요!</p>
-        <p>금메달, 은메달, 동메달을 각각 몇명정도가 수상했는지도 알고 싶습니다. 학생 아이디가 7이상인 학생들은 수상에서 제외합니다.</p>
-    </h3>
+    </h4>
+    <div>조건: 금메달, 은메달, 동메달을 각각 몇명정도가 수상했는지도 알고 싶습니다. 학생 아이디가 7이상인 학생들은 수상에서 제외합니다.</div>
+    <br></br>
     <table>
         <tr>
             <th>ID</th>
@@ -120,9 +116,9 @@
     </script>
 
     <div id="result"></div>
-    <button onclick="award()" onclick="medal()">Award!</button>
+    <button onclick="result()">Award!</button>
     <br></br>
     <button onclick="location.href='AddieQuiz1.html'">이전 문제</button>
-    <button>다음 문제</button>
+    <button onclick="location.href='AddieQuiz3.html'">다음 문제</button>
 </body>
 </html>
