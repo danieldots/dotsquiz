@@ -38,6 +38,7 @@
                 this.eachMenu[1] = b;
                 this.eachMenu[2] = c;
                 let totalMenu = 0;
+                
                 for (let i = 0; i <= 2; i++) {
                     totalMenu += (eachPrice[i] * eachMenu[i]);
                 } 
@@ -46,10 +47,10 @@
                     alert('배달은 5000원부터 가능하다구')
                 } else if (totalMenu < 12000 && totalMenu >= 5000){
                     deliverySum = totalMenu + 2500;
-                    temp_html = `<h2>${deliverySum}</h2>`
+                    temp_html = `<h2>${deliverySum}원</h2>`
                     $('#finalPrice').append(temp_html)
                 } else {
-                    temp_html = `<h2>${totalMenu}</h2>`
+                    temp_html = `<h2>${totalMenu}원</h2>`
                     $('#finalPrice').append(temp_html)
                 }
             } 
@@ -90,4 +91,6 @@
     <button onclick="order()">당장 시키자!</button>
     <br></br>
     <h2 id = "finalPrice" ></h2>
+    <button onclick="location.href='AddieQuiz2.html'">이전 문제</button>
+    <button onclick="location.href='AddieQuiz4.html'">다음 문제</button>
 </body>
