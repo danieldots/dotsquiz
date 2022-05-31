@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addie's Quiz</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+         const studentInfo = [{id:2, lastName: '이'}, 
+                            {id:7, lastName: '김'}, 
+                            {id:1, lastName: '김'}, 
+                            {id:11, lastName: '김'}, 
+                            {id:9, lastName: '안'}, 
+                            {id:3, lastName: '박'}, 
+                            {id:4, lastName: '송'}, 
+                            {id:12, lastName: '이'}, 
+                            {id:8, lastName: ''}
+                        ];
+
+        //함수 sortStudent
+        const LastNameInfo = []
+        const sortStudent = (studentInfo) => {
+            const overIdFive = studentInfo.filter(object => {
+                return object.id >= 5 && object.lastName !== '';    
+            });
+            
+            overIdFive.sort(function compare(a, b) {
+                return a.id - b.id;
+            });
+            
+            for (let i = 0; i < overIdFive.length; i++){
+                LastNameInfo.push(overIdFive[i].lastName)  
+            };
+        };
+        sortStudent(studentInfo)
+        
+        //함수 helper
+        const helper = function (arr) {
+            const result = {};
+            arr.forEach((x) => {
+                result[x] = (result[x] || 0) +1;
+            });    
+            console.log(result)
+            document.write(JSON.stringify(result))
+        }
+        helper(LastNameInfo)
+        
+        //expected result :  김 2 안 1 이 1 
+    </script>
+</head>
+<body>
+    <h2> 
+        애디와 퀴즈풀이
+    </h2>
+    <h4> 
+        <p>Quiz5. 위에서 정렬한 학생 정보를 매개변수 인자로 넘겨받아서, 같은 성씨를 가진 학생들이 몇명이 있는지 카운트해주는 helper 함수를 만들고 </p>
+        <p>이 값을 리턴해주는 방식으로 sortStudent를 바꿔보세요! </p>
+    </h4>
+    <div>
+        조건: countSameLastName은 반드시 정렬된 학생정보를 넘겨받아야합니다.
+    </div>
+    <br></br>
+    <button onclick="location.href='AddieQuiz4.html'">이전 문제</button>
+</body>
