@@ -6,7 +6,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Addie's Quiz</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const studentInfo = [{id:2, lastName: '이'}, 
+                            {id:7, lastName: '김'}, 
+                            {id:1, lastName: '김'}, 
+                            {id:11, lastName: '김'}, 
+                            {id:9, lastName: '안'}, 
+                            {id:3, lastName: '박'}, 
+                            {id:4, lastName: '송'}, 
+                            {id:12, lastName: '이'}, 
+                            {id:8, lastName: ''}];
+        
+    
+        const finalInfo = []
+        const sortStudent = (studentInfo) => {
+            const overIdFive = studentInfo.filter(object => {
+                return object.id >= 5 && object.lastName !== '';    
+            });
+            
+            overIdFive.sort(function compare(a, b) {
+                return a.id - b. id;
+            });
+            
+            for (let i = 0; i < overIdFive.length; i++){
+                finalInfo.push(overIdFive[i])  
+            };
+        };
+
+        sortStudent(studentInfo)
+
+        function a() {
+            $("#studentTable").empty();
+            for (let i = 0; i < finalInfo.length; i++) {
+                let studentid = finalInfo[i].id;
+                let studentln = finalInfo[i].lastName;
+                let temp_html = `<tr>
+                                    <td>${studentid}</td>;
+                                    <td>${studentln}</td>;
+                                </tr>`
+                $("#studentTable").append(temp_html);
+            
+            };
+        };
+    </script>
+
+    <style>
+
+    table{
+        border: 3px solid black;
+        border-collapse: collapse;
+        text-align: center;
+        padding: 5px;
+        margin-bottom: 15px;
+    }
+
+    th{
+        border: 1px solid;
+        padding: 3px 8px;
+    }
+
+    tr{
+        border: 1x solid;
+    }
+
+    td{
+        border: 1px solid;
+    }
+
+    </style> 
 </head>
+
 <body>
     <h2> 
         애디와 퀴즈풀이
@@ -16,6 +85,18 @@
         <p>이 행동을 sortStudent라는 함수로 구현해보세요!</p>
     </h4>
     <div>조건: id가 5이상인 학생들만 골라내서 정렬합니다. 학생 정보는 lastName 프로퍼티에 성씨가 담겨져있어야합니다. 만약 담겨져있지 않다면 리턴값에서 제외시킵니다.</div>
+    <br></br>
+    <table>
+        <thead>
+            <tr>
+                <th>ID </th> 
+                <th>Last Name</th>
+            </tr>
+        </thead>
+        <tbody id = "studentTable">
+        </tbody>
+    </table> 
+    <button onclick = "a()">Sort!</button>
     <br></br>
     <button onclick="location.href='AddieQuiz3.html'">이전 문제</button>
     <button onclick="location.href='AddieQuiz5.html'">다음 문제</button>
