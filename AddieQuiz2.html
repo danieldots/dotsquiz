@@ -31,33 +31,33 @@
                 );
                 for (let i = 0; i < students.length; i++) {
                     if (students[i].score >= 90){
-                        students[i].medal = "금메달"
-                        gold++
+                        students[i].medal = "금메달";
+                        gold++;
                     } else if (students[i].score >= 80 && students[i].score < 90){
-                        students[i].medal = "은메달"
-                        silver++
+                        students[i].medal = "은메달";
+                        silver++;
                     } else if (students[i].score >= 70 && students[i].score < 80){
-                        students[i].medal = "동메달"
-                        bronze++
+                        students[i].medal = "동메달";
+                        bronze++;
                     } else if (students[i].score < 70){
-                        students[i].medal = "성실상"
-                        effort++
+                        students[i].medal = "성실상";
+                        effort++;
                     }
                 };
             return res = (gold, silver, bronze, students);
         };
-        //award 함수 선언!!
+        //award 함수 호출!!
         award(students);
-        console.log(res)
+        console.log(res);
         
         function result(){
-        $('#result').empty()
-        let result = ("금메달 수상 인원:"+gold+"명"+" / "+"은메달 수상 인원:"+silver+"명"+" / "+"동메달 수상 인원:"+bronze+"명");
-        let temp_html =`<div>${result}</div>`
-        $('#result').append(temp_html)
-        }      
+            $('#result').empty();
+            let result = ("금메달 수상 인원:"+gold+"명"+" / "+"은메달 수상 인원:"+silver+"명"+" / "+"동메달 수상 인원:"+bronze+"명");
+            let temp_html =`<div>${result}</div>`;
+            $('#result').append(temp_html);
+        };      
     </script>
-       <style>
+    <style>
         table{
             border: 3px solid black;
             border-collapse: collapse;
@@ -70,9 +70,11 @@
             border: 1px solid;
             padding: 3px 8px;
         }
+
         tr{
             border: 1x solid;
         }
+
         td{
             border: 1px solid;
         }

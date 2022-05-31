@@ -16,7 +16,7 @@
             tangsuyuk: 12000,
         } 
 
-        const array = Object.values(menu)
+        const array = Object.values(menu);
             for (let i = 0; i < array.length; i++){
                 this.eachPrice[i] = array[i];   
             }
@@ -44,14 +44,14 @@
                 } 
                 
                 if (totalMenu < 5000) {
-                    alert('배달은 5000원부터 가능하다구')
-                } else if (totalMenu < 12000 && totalMenu >= 5000){
+                    alert('배달은 5000원부터 가능하다구');
+                } else if (totalMenu < 12000 && totalMenu >= 5000) {
                     deliverySum = totalMenu + 2500;
-                    temp_html = `<h2>${deliverySum}원</h2>`
-                    $('#finalPrice').append(temp_html)
+                    temp_html = `<h2>${deliverySum}원</h2>`;
+                    $('#finalPrice').append(temp_html);
                 } else {
-                    temp_html = `<h2>${totalMenu}원</h2>`
-                    $('#finalPrice').append(temp_html)
+                    temp_html = `<h2>${totalMenu}원</h2>`;
+                    $('#finalPrice').append(temp_html);
                 }
             } 
         }   
