@@ -10,19 +10,22 @@
     function a() {
         $("#gugudan").empty();
         $("#i_dan").empty();
-        var i = Number(document.getElementById('num').value);
-            if (Number.isInteger(i) == false) {
-                alert("정수가 아닌 실수를 입력하였습니다. 2~9 사이의 정수를 입력하세요!!");
-            } else if (i < 2 || i >9) {
-                alert("2~9 사이의 정수를 입력하세요!!");
-            } else {
-                let dan = `<div>${i+"단"}</div>`;
-                $('#i_dan').append(dan);
 
-                for (let j = 1; j < 10; j++) {
-                let gugu = i+"*"+j+"="+ i*j;
-                let temp_html = `<div>${gugu}</div>`;
-                $("#gugudan").append(temp_html);
+        var i = Number(document.getElementById('num').value);
+        if (Number.isInteger(i) == false) {
+            alert("정수가 아닌 실수를 입력하였습니다. 2~9 사이의 정수를 입력하세요!!");
+            return;
+        }
+        if (i < 2 || i >9) {
+            alert("2~9 사이의 정수를 입력하세요!!");
+            return;
+        } {let dan = `<div>${i+"단"}</div>`;
+            $('#i_dan').append(dan);
+
+            for (let j = 1; j < 10; j++) {
+            let gugu = i+"*"+j+"="+ i*j;
+            let temp_html = `<div>${gugu}</div>`;
+            $("#gugudan").append(temp_html);
             }
         }
     }
