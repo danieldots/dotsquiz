@@ -21,34 +21,43 @@
         let gold =0;
         let silver= 0;
         let bronze = 0;
-        let effort = 0;
 
         //award 함수 선언!!
         const award = (students) => {
-            const award_include = students.filter(object => {
+            let award_include = students.filter(object => {
                 return Number(object.id) <= 6;
-                    }
+                    } //>map or foreach
                 );
-                for (let i = 0; i < students.length; i++) {
-                    if (students[i].score >= 90){
-                        students[i].medal = "금메달";
-                        gold++;
-                    } else if (students[i].score >= 80 && students[i].score < 90){
-                        students[i].medal = "은메달";
-                        silver++;
-                    } else if (students[i].score >= 70 && students[i].score < 80){
-                        students[i].medal = "동메달";
-                        bronze++;
-                    } else if (students[i].score < 70){
-                        students[i].medal = "성실상";
-                        effort++;
+
+                const medal = (score) => {
+                        if (score >= 90) {
+                            gold++;
+                            return "금메달";
+                        }
+                        if (score >=80) {
+                            silver++;
+                            return "은메달";
+                        }
+                        if (score >=70) {
+                            bronze++;
+                            return "동메달";
+                        } return "성실상";                  
                     }
-                };
-            return res = (gold, silver, bronze, students);
-        };
+
+                
+                for (let i = 0; i < award_include.length; i++) {
+                    students[i].medal = medal(award_include[i].score)
+                }; 
+                console.log(gold, silver, bronze, students)
+        }                   
         //award 함수 호출!!
         award(students);
-        console.log(res);
+        
+
+
+
+
+        
         
         function result(){
             $('#result').empty();
@@ -102,20 +111,7 @@
         </table>
 
     <script>
-        buildTable(students)
-        function buildTable(data) {
-            var table = document.getElementById('table1')
-
-            for (var i=0; i < data.length; i++)
-            {
-                var row = `<tr>
-                            <td>${data[i].id}</td>
-                            <td>${data[i].score}</td>
-                            <td>${data[i].medal}</td>
-                        </tr>`
-                table.innerHTML += row
-            }
-        }
+        
     </script>
 
     <div id="result"></div>
